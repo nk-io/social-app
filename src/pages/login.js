@@ -3,7 +3,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import AppIcon from "../images/icon.png";
-import axios from "axios";
 
 //MUI
 import Grid from "@material-ui/core/Grid";
