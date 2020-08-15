@@ -1,4 +1,11 @@
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED, LOADING_USER } from "../types";
+import {
+    SET_USER,
+    SET_ERRORS,
+    CLEAR_ERRORS,
+    LOADING_UI,
+    SET_UNAUTHENTICATED,
+    LOADING_USER,
+} from "../types";
 import axios from "axios";
 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -38,15 +45,15 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 };
 
 export const logoutUser = () => (dispatch) => {
-    localStorage.removeItem('FBIdToken');
-    delete axios.defaults.headers.common['Authorizaton'];
+    localStorage.removeItem("FBIdToken");
+    delete axios.defaults.headers.common["Authorizaton"];
     dispatch({
-        type: SET_UNAUTHENTICATED
+        type: SET_UNAUTHENTICATED,
     });
-}
+};
 
 export const getUserData = () => (dispatch) => {
-    dispatch({ type: LOADING_USER});
+    dispatch({ type: LOADING_USER });
     axios
         .get("/user")
         .then((res) => {
@@ -59,16 +66,17 @@ export const getUserData = () => (dispatch) => {
 };
 
 export const uploadImage = (formData) => (dispatch) => {
-    dispatch({type: LOADING_USER});
-    axios.post('/user/image', formData)
+    dispatch({ type: LOADING_USER });
+    axios
+        .post("/user/image", formData)
         .then(() => {
             dispatch(getUserData());
         })
-        .catch(err => {
+        .catch((err) => {
             console.log(err);
             dispatch(getUserData());
         });
-}
+};
 
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
@@ -76,11 +84,12 @@ const setAuthorizationHeader = (token) => {
     axios.defaults.headers.common["Authorization"] = FBIdToken;
 };
 
-export const editUserDetails = (userDetails) => (dispatch) =>{
-    dispatch({ type: LOADING_USER});
-    axios.post('/user', userDetails)
-        .then( () => {
+export const editUserDetails = (userDetails) => (dispatch) => {
+    dispatch({ type: LOADING_USER });
+    axios
+        .post("/user", userDetails)
+        .then(() => {
             dispatch(getUserData());
         })
-        .catch(err => console.log(err));
-}
+        .catch((err) => console.log(err));
+};
