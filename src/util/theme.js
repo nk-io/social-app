@@ -1,5 +1,4 @@
-export default
-{
+export default {
     palette: {
         primary: {
             light: "#33c9dc",
@@ -48,4 +47,4 @@ export default
             marginLeft: -12,
         },
     },
-}
+};
