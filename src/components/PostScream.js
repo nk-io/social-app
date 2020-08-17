@@ -20,7 +20,6 @@ import { postScream, clearErrors } from "../redux/actions/dataActions";
 
 const styles = (theme) => ({
     ...theme.forms,
-    ...theme.forms,
     submitButton: {
         position: "relative",
         float: "right",
