@@ -6,6 +6,7 @@ import {
     LOADING_DATA,
     DELETE_SCREAM,
     POST_SCREAM,
+    SUBMIT_COMMENT
 } from "../types";
 
 const initialState = {
@@ -24,8 +25,8 @@ export default function (state = initialState, action) {
         case SET_SCREAM:
             return {
                 ...state,
-                scream: action.payload
-            }
+                scream: action.payload,
+            };
         case SET_SCREAMS:
             return {
                 ...state,
@@ -38,28 +39,33 @@ export default function (state = initialState, action) {
                 (scream) => scream.screamId === action.payload.screamId
             );
             state.screams[index] = action.payload;
-            if(state.scream.screamId === action.payload.screamId){
+            if (state.scream.screamId === action.payload.screamId) {
                 state.scream = action.payload;
             }
             return {
                 ...state,
             };
-            case DELETE_SCREAM:
-                index = state.screams.findIndex(
-                  (scream) => scream.screamId === action.payload
-                );
-                state.screams.splice(index, 1);
-                return {
-                  ...state
-                };
-            case POST_SCREAM:
-                return {
-                    ...state,
-                    screams: [
-                        action.payload,
-                        ...state.screams
-                    ]
-                }
+        case SUBMIT_COMMENT:
+             return {
+                 ...state,
+                 scream: {
+                     ...state.scream,
+                     comments: [action.payload, ...state.scream.comments]
+                 }
+             }  
+        case DELETE_SCREAM:
+            index = state.screams.findIndex(
+                (scream) => scream.screamId === action.payload
+            );
+            state.screams.splice(index, 1);
+            return {
+                ...state,
+            };
+        case POST_SCREAM:
+            return {
+                ...state,
+                screams: [action.payload, ...state.screams],
+            };
         default:
             return state;
     }
