@@ -23,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,5 +42,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://europe-west1-social-app-60b3b.cloudfunctions.net/api"
+  "proxy": "https://europe-west1-social-app-60b3b.cloudfunctions.net/api",
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  },
+  "homepage": "http://nk-io.github.io/social-app"
 }
